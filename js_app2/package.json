@@ -1,0 +1,15 @@
+{
+    "name": "js_app2",
+    "scripts": {
+    },
+    "type": "module",
+    "main": "index.ts",
+    "devDependencies": {
+      "pnpm": "^6.0.0",
+    },
+    "dependencies": {
+    },
+    "engines": {
+      "deno": ">=1.33.1"
+    }
+  }
