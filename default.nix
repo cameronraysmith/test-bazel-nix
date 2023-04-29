@@ -8,15 +8,11 @@ let
     pandas
   ]);
 
-  nodeEnv = pkgs.nodePackages.shell.override {
-    extraBuildInputs = [
-      pkgs.pnpm
-    ];
-    extraPath = with pkgs.nodePackages; [
-      typescript
-      next
-      react
-      react-dom
+  nodeEnv = pkgs.mkShell {
+    buildInputs = with pkgs; [
+      nodejs
+      nodePackages.pnpm
+      nodePackages.typescript
     ];
   };
 in {
