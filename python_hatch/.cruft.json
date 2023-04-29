@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/frankie567/cookiecutter-hipster-pypackage",
+  "commit": "eaac3e0ee352a4bad87489917388e40ab6fef9b8",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "python_hatch",
+      "email": "devs@pythonhatch.org",
+      "github_username": "pythonhatch",
+      "project_name": "pythonhatch",
+      "dist_name": "pythonhatch",
+      "package_name": "pythonhatch",
+      "project_short_description": "test package for python and hatch",
+      "repository_name": "cameronraysmith/test-bazel-nix",
+      "repository_url": "https://github.com/cameronraysmith/test-bazel-nix",
+      "docs_url": "https://cameronraysmith.net/pythonhatch",
+      "open_source_license": "MIT license",
+      "python_version": "3.10",
+      "asyncio": "Y",
+      "docs_icon": "material/library",
+      "docs_color_primary": "blue grey",
+      "docs_color_accent": "green",
+      "_template": "https://github.com/frankie567/cookiecutter-hipster-pypackage"
+    }
+  },
+  "directory": null
+}
