@@ -2,21 +2,26 @@ workspace(name = "monorepo")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+NIXPKGS_COMMIT="4dddbafba508cd2dffd95b8562cab91c9336fe36"
+
 http_archive(
-    name = "io_bazel_rules_nixpkgs",
-    strip_prefix = "rules_nixpkgs-0.9.0",
-    sha256 = "7db3b3dd652249f04bdfa13e2db6dfdebff9d1da7829b5aee3ec3f3c8f8fd6fd",
-    urls = ["https://github.com/tweag/rules_nixpkgs/archive/v0.9.0.tar.gz"],
+    name = "io_tweag_rules_nixpkgs",
+    strip_prefix = "rules_nixpkgs-{}".format(NIXPKGS_COMMIT),
+    urls = ["https://github.com/tweag/rules_nixpkgs/archive/{}.tar.gz".format(NIXPKGS_COMMIT)],
 )
 
-load("@io_bazel_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository")
+load("@io_tweag_rules_nixpkgs//nixpkgs:repositories.bzl", "rules_nixpkgs_dependencies")
+rules_nixpkgs_dependencies()
+
+load("@io_tweag_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_git_repository", "nixpkgs_package", "nixpkgs_cc_configure")
+
+# load("@io_tweag_rules_nixpkgs//nixpkgs:toolchains/go.bzl", "nixpkgs_go_configure")
+
 
 nixpkgs_git_repository(
     name = "nixpkgs",
     revision = "21.05",
 )
-
-load("@io_bazel_rules_nixpkgs//nixpkgs:nixpkgs.bzl", "nixpkgs_package")
 
 nixpkgs_package(
     name = "python3",
@@ -31,15 +36,15 @@ nixpkgs_package(
 )
 
 nixpkgs_package(
-    name = "yarn",
-    attribute_path = "yarn",
-    repository = "@nixpkgs",
-)
-
-nixpkgs_package(
     name = "pnpm",
     attribute_path = "pnpm",
     repository = "@nixpkgs",
+)
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "dcc55f810142b6cf46a44d0180a5a7fb923c04a5061e2e8d8eb05ccccc60864b",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.8.0/rules_nodejs-5.8.0.tar.gz"],
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories")
